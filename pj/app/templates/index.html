@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+<script>
+
+
+function getHentai() {
+    const url = '/api/v1/hentai/';
+
+    fetch(url, {
+        method: 'GET'
+    })
+        .then(response => response.json())
+        .then(data => console.log(data))
+}
+
+function addHentai() {
+    const url = '/api/v1/add_hentai/'
+    const data = {
+        title: 'title3',
+        description: 'desc3',
+    };
+
+    fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    })
+    .then(response => response.json())
+    .then(data => console.log(data))
+}
+
+function editHen(henId) {
+    const url = `/api/v1/upd_hen/${henId}/`
+    const updatedData = {
+        title: 'title6969',
+        description: 'upd',
+    };
+
+    fetch(url, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(updatedData)
+    })
+    .then(response => response.json())
+    .then(data => console.log(data))
+}
+
+function deleteHen(henId) {
+    const url = `/api/v1/delete/${henId}/`
+
+    fetch(url, {
+        method: 'DELETE'
+    })
+    .then(response => {
+        if (response.ok) {
+            console.log('suc');
+        } else {
+            console.error('err');
+        }
+    })
+}
+
+
+
+deleteHen(2);
+editHen(1);
+addHentai();
+getHentai()
+</script>
+</body>
+</html>
